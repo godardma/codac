@@ -10,9 +10,10 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/operators.h>
 #include <pybind11/stl.h>
-#include "codac2_py_core.h"
 #include <codac2_Figure2D.h>
 #include "codac2_py_Figure2D_docs.h" // Generated file from Doxygen XML (doxygen2docstring.py):
+#include "codac2_py_matlab.h"
+#include <codac2_Paving.h>
 
 using namespace std;
 using namespace codac2;
@@ -43,7 +44,8 @@ void export_Figure2D(py::module& m)
     FIGUREAXIS_AXIS_SIZET_CONST_INTERVAL_REF_CONST_STRING_REF,
     "dim_id"_a, "limits"_a, "label"_a="");
 
-  py::class_<Figure2D> exported(m, "Figure2D", FIGURE2D_MAIN);
+  py::class_<Figure2D, std::shared_ptr<Figure2D> /* due to enable_shared_from_this */>
+    exported(m, "Figure2D", FIGURE2D_MAIN);
   exported
   
     .def(py::init<const std::string&,GraphicOutput,bool>(),
@@ -150,10 +152,10 @@ void export_Figure2D(py::module& m)
   exported_default_view
   
     .def("selected_fig", &DefaultView::selected_fig,
-      STATIC_FIGURE2D_PTR_DEFAULTVIEW_SELECTED_FIG)
+      SHARED_PTR_FIGURE2D_DEFAULTVIEW__SELECTED_FIG)
   
     .def("set", &DefaultView::set,
-      STATIC_VOID_DEFAULTVIEW_SET_FIGURE2D_PTR)
+      STATIC_VOID_DEFAULTVIEW_SET_SHARED_PTR_FIGURE2D)
   
     .def("set_axes", &DefaultView::set_axes,
       STATIC_VOID_DEFAULTVIEW_SET_AXES_CONST_FIGUREAXIS_REF_CONST_FIGUREAXIS_REF)
