@@ -32,3 +32,24 @@ Color::Color(int r_, int g_, int b_, int alpha_)
 {
   assert(r_ >= 0 && r_ <= 255 && g_ >= 0 && g_ <= 255 && b_ >= 0 && b_ <= 255 && alpha_ >= 0 && alpha_ <= 255);
 }
+
+Color::Color(std::string hex_str_)
+  : hex_str(hex_str_)
+{
+  assert(hex_str_.size() == 7 || hex_str_.size() == 9);
+  assert(hex_str_[0] == '#');
+  int red,green,blue,a;
+  istringstream(hex_str_.substr(1,2)) >> hex >> red;
+  istringstream(hex_str_.substr(3,2)) >> hex >> green;
+  istringstream(hex_str_.substr(5,2)) >> hex >> blue;
+  r = (float)red/255.;
+  g = (float)green/255.;
+  b = (float)blue/255.;
+  if(hex_str_.size() == 9)
+  {
+    istringstream(hex_str_.substr(7,2)) >> hex >> a;
+    alpha = (float)a/255.;
+  }
+  else
+    alpha = 1.;
+}

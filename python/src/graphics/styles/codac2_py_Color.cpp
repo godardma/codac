@@ -38,6 +38,10 @@ void export_Color(py::module& m)
       COLOR_COLOR_FLOAT_FLOAT_FLOAT_FLOAT,
       "r"_a, "g"_a, "b"_a, "alpha"_a=1.)
 
+    .def(py::init<std::string>(),
+      COLOR_COLOR_STRING,
+      "hex_str"_a)
+
     // Predefined colors
 
     .def_static("none", &Color::none,
