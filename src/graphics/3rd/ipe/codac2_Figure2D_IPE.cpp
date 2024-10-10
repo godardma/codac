@@ -92,7 +92,15 @@ void Figure2D_IPE::begin_path(const StyleProperties& s)
 void Figure2D_IPE::draw_point(const Vector& c, const StyleProperties& s)
 {
   assert(_fig.size() <= c.size());
-  // Not implemented yet
+
+  _f_temp_content << "\n \
+    <use layer=\"alpha\" \n \
+    name=\"mark/disk(sx)\"  \n \
+    pos=\"";
+  _f_temp_content << scale_x(c[i()])<< " " << scale_y(c[j()])<<"\"";
+  _f_temp_content << "\n \
+    stroke=\"codac_color_" << s.stroke_color.hex_str.substr(1) << "\" \n \
+    size=\"normal\"/>";
 }
 
 void Figure2D_IPE::draw_box(const IntervalVector& x, const StyleProperties& s)
