@@ -20,15 +20,19 @@ StyleProperties::StyleProperties(const Color& stroke_color_)
 { }
 
 StyleProperties::StyleProperties(std::initializer_list<Color> colors)
-  : stroke_color(*colors.begin()), fill_color(*std::prev(colors.end()))
+  : stroke_color(*colors.begin())
 {
   assert(colors.size() <= 2);
+  if(colors.size() == 2)
+    fill_color = *std::prev(colors.end());
 }
 
 StyleProperties::StyleProperties(std::initializer_list<std::string> colors)
-  : stroke_color(*colors.begin()), fill_color(*std::prev(colors.end()))
+  : stroke_color(*colors.begin())
 {
   assert(colors.size() <= 2);
+  if(colors.size() == 2)
+    fill_color = Color(*std::prev(colors.end()));
 }
 
 StyleProperties::StyleProperties(const string& vibes_style)
