@@ -45,6 +45,22 @@ void export_StyleProperties(py::module& m)
         }),
       STYLEPROPERTIES_STYLEPROPERTIES_INITIALIZER_LIST_COLOR,
       "v"_a)
+
+    .def(py::init(
+        [](const std::vector<std::string>& v)
+        {
+          if(v.size() == 1)
+            return std::make_unique<StyleProperties>(v[0]);
+          else if(v.size() == 2)
+            return std::make_unique<StyleProperties,std::initializer_list<std::string>>({ v[0], v[1] });
+          else
+          {
+            throw invalid_argument("StyleProperties must be built from one (edge) or two (edge/fill) colors.");
+            return std::make_unique<StyleProperties>();
+          }
+        }),
+      STYLEPROPERTIES_STYLEPROPERTIES_INITIALIZER_LIST_STRING,
+      "v"_a)
   
     .def(py::init<const std::string&>(),
       STYLEPROPERTIES_STYLEPROPERTIES_CONST_STRING_REF,

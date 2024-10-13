@@ -39,7 +39,7 @@ void export_Color(py::module& m)
       "r"_a, "g"_a, "b"_a, "alpha"_a=1.)
 
     .def(py::init<std::string>(),
-      COLOR_COLOR_STRING,
+      COLOR_COLOR_CONST_STRING_REF,
       "hex_str"_a)
 
     // Predefined colors

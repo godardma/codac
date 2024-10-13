@@ -33,7 +33,7 @@ Color::Color(int r_, int g_, int b_, int alpha_)
   assert(r_ >= 0 && r_ <= 255 && g_ >= 0 && g_ <= 255 && b_ >= 0 && b_ <= 255 && alpha_ >= 0 && alpha_ <= 255);
 }
 
-Color::Color(std::string hex_str_)
+Color::Color(const std::string& hex_str_)
   : hex_str(hex_str_)
 {
   assert(hex_str_.size() == 7 || hex_str_.size() == 9);
