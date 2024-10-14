@@ -35,7 +35,7 @@ StyleProperties::StyleProperties(std::initializer_list<std::string> colors)
     fill_color = Color(*std::prev(colors.end()));
 }
 
-StyleProperties::StyleProperties(const string& vibes_style)
+StyleProperties::StyleProperties(const std::string& vibes_style)
 { 
 
   auto fillStart = vibes_style.find('[');
