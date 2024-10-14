@@ -50,7 +50,7 @@ void export_StyleProperties(py::module& m)
         [](const std::vector<std::string>& v)
         {
           if(v.size() == 1)
-            return std::make_unique<StyleProperties>(v[0]);
+            return std::make_unique<StyleProperties,std::initializer_list<std::string>>({ v[0] });
           else if(v.size() == 2)
             return std::make_unique<StyleProperties,std::initializer_list<std::string>>({ v[0], v[1] });
           else
