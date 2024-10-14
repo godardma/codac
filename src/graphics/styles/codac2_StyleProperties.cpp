@@ -36,8 +36,27 @@ StyleProperties::StyleProperties(std::initializer_list<std::string> colors)
 }
 
 StyleProperties::StyleProperties(const string& vibes_style)
-  : stroke_color(Color::green()), fill_color(Color::none())
-{ }
+{ 
+
+  auto fillStart = vibes_style.find('[');
+  auto fillEnd = vibes_style.find(']');
+
+  if (fillStart != string::npos && fillEnd != string::npos && fillStart < fillEnd)
+  {
+    std::string strokeStr = vibes_style.substr(0,fillStart);
+    std::string fillStr = vibes_style.substr(fillStart+1, fillEnd-fillStart-1);
+    assert(Color::vibes_colors().find(strokeStr) != Color::vibes_colors().end());
+    assert(Color::vibes_colors().find(fillStr) != Color::vibes_colors().end());
+    stroke_color =  Color::vibes_colors().find(strokeStr)->second;
+    fill_color = Color::vibes_colors().find(fillStr)->second;
+  }
+  else
+  {
+    assert(Color::vibes_colors().find(vibes_style) != Color::vibes_colors().end());
+    stroke_color = Color::vibes_colors().find(vibes_style)->second;
+    fill_color = Color::none();
+  }
+}
 
 StyleProperties StyleProperties::inside()
 {

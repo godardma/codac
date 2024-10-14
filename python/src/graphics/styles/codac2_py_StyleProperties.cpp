@@ -79,4 +79,5 @@ void export_StyleProperties(py::module& m)
   
   py::implicitly_convertible<py::list,StyleProperties>();
   py::implicitly_convertible<Color,StyleProperties>();
+  py::implicitly_convertible<std::string, StyleProperties>();
 }
