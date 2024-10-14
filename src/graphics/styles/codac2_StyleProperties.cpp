@@ -58,6 +58,10 @@ StyleProperties::StyleProperties(const std::string& vibes_style)
   }
 }
 
+StyleProperties::StyleProperties(const char* vibes_style)
+  : StyleProperties(string(vibes_style))
+{ }
+
 StyleProperties StyleProperties::inside()
 {
   StyleProperties s;

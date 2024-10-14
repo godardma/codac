@@ -9,8 +9,8 @@ int main(){
     fig.set_axes(axis(0,{-0.5,5.5}), axis(1,{-0.5,5.5}));
 
     // VIBes syntax
-    fig.draw_box(IntervalVector{{0,0.9},{0,0.9}},(string)"blue");
-    fig.draw_box(IntervalVector{{1,1.9},{0,0.9}},(string)"red[blue]");
+    fig.draw_box(IntervalVector{{0,0.9},{0,0.9}},"blue");
+    fig.draw_box(IntervalVector{{1,1.9},{0,0.9}},"red[blue]");
 
     // Predefined styles
     fig.draw_box(IntervalVector{{0,0.9},{1,1.9}},StyleProperties::inside());
