@@ -93,7 +93,7 @@ void Figure2D_IPE::begin_path(const StyleProperties& s, bool tip=false)
 
   _f_temp_content << "\n \
     <path layer=\"alpha\" \n \
-    stroke=\"codac_color_" << ipe_str(s.stroke_color) << "\" \n \
+    stroke=\" " << ipe_str(s.stroke_color) << "\" \n \
     fill=\"codac_color_" << ipe_str(s.fill_color) << "\" \n \
     opacity=\"" << ipe_opacity(s.fill_color) << "%\" \n \
     stroke-opacity=\"" << ipe_opacity(s.stroke_color) << "%\" \n \
@@ -283,7 +283,12 @@ void Figure2D_IPE::draw_AUV(const Vector& x, float size, const StyleProperties& 
 
   _f_temp_content<<"</group>";
   
+}
 
+void Figure2D_IPE::draw_text(const Vector& c, const std::string& text, const int& size, const StyleProperties& s)
+{
+  assert(c.size() == 2);
+  // Not implemented yet
 }
 
 double Figure2D_IPE::scale_x(double x) const

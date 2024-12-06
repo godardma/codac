@@ -34,5 +34,8 @@ namespace codac2
       // Robots
       virtual void draw_tank(const Vector& x, float size, const StyleProperties& s = StyleProperties()) = 0;
       virtual void draw_AUV(const Vector& x, float size, const StyleProperties& s = StyleProperties()) = 0;
+
+      // Miscellanous
+      virtual void draw_text(const Vector& c, const std::string& text, const int& size = 10, const StyleProperties& s = StyleProperties()) = 0;
   };
 }

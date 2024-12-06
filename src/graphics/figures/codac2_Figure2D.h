@@ -104,6 +104,9 @@ namespace codac2
         const StyleProperties& out_s = StyleProperties::outside(),
         const StyleProperties& in_s = StyleProperties::inside());
 
+      //Miscellaneous
+      void draw_text(const Vector& c, const std::string& text, const int& font_size=10, const StyleProperties& s = StyleProperties());
+
       template<typename P>
       void draw_subpaving(const Subpaving<P>& p, const StyleProperties& s = StyleProperties())
       {

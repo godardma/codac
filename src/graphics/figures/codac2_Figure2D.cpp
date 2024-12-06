@@ -277,3 +277,13 @@ void Figure2D::draw_paving(const PavingInOut& p, const StyleProperties& boundary
       });
   }
 }
+
+void Figure2D::draw_text(const Vector& c, const string& text, const int& font_size, const StyleProperties& s)
+{
+  assert_release(c.size() == 2);
+  assert_release(font_size > 0 && font_size < 5000);
+
+  for(const auto& output_fig : _output_figures)
+    output_fig->draw_text(c,text,font_size,s);
+  
+}

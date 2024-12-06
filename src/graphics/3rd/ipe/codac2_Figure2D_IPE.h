@@ -63,6 +63,9 @@ namespace codac2
       void draw_tank(const Vector& x, float size, const StyleProperties& s = StyleProperties());
       void draw_AUV(const Vector& x, float size, const StyleProperties& s = StyleProperties());
 
+      // Miscellanous
+      void draw_text(const Vector& c, const std::string& text, const int& size = 10, const StyleProperties& s = StyleProperties());
+
     protected:
 
       double scale_x(double x) const;

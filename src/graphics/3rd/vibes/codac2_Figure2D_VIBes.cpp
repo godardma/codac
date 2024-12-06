@@ -142,6 +142,12 @@ void Figure2D_VIBes::draw_AUV(const Vector& x, float size, const StyleProperties
   vibes::drawAUV(x[i()],x[j()],180.*x[j()+1]/codac2::pi, size, to_vibes_style(s), _params);
 }
 
+void Figure2D_VIBes::draw_text(const Vector& c, const std::string& text, const int& size, const StyleProperties& s)
+{
+  assert(c.size() == 2);
+  // Not yet implemented in VIBes
+}
+
 string Figure2D_VIBes::to_vibes_style(const StyleProperties& s)
 {
   return s.stroke_color.hex_str() + "[" + s.fill_color.hex_str() + "]";
