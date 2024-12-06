@@ -136,6 +136,16 @@ void export_Figure2D(py::module& m)
       VOID_FIGURE2D_DRAW_AUV_CONST_VECTOR_REF_FLOAT_CONST_STYLEPROPERTIES_REF,
       "x"_a, "size"_a, "s"_a=StyleProperties())
 
+    // Miscellanous
+
+    .def("draw_text", &Figure2D::draw_text,
+      VOID_FIGURE2D_DRAW_TEXT_CONST_VECTOR_REF_CONST_STRING_REF_CONST_INT_REF_CONST_STYLEPROPERTIES_REF,
+      "c"_a, "text"_a, "size"_a=10, "s"_a=StyleProperties())
+
+    .def("draw_raster", &Figure2D::draw_raster,
+      VOID_FIGURE2D_DRAW_RASTER_CONST_VECTOR_REF_CONST_VECTOR_REF_CONST_STRING_REF_CONST_BOOL_REF,
+      "c"_a, "size"_a, "filename"_a, "absolute_path"_a=false)
+
   ;
 
   py::class_<DefaultView> exported_default_view(m, "DefaultView", DEFAULTVIEW_MAIN);
@@ -197,6 +207,7 @@ void export_Figure2D(py::module& m)
       STATIC_VOID_DEFAULTVIEW_DRAW_AUV_CONST_VECTOR_REF_FLOAT_CONST_STYLEPROPERTIES_REF,
       "x"_a, "size"_a, "s"_a=StyleProperties())
 
+    
     // Pavings
 
     .def_static("draw_paving", (void(*)(const PavingOut&,const StyleProperties&,const StyleProperties&))&DefaultView::draw_paving,
@@ -206,6 +217,16 @@ void export_Figure2D(py::module& m)
     .def_static("draw_paving", (void(*)(const PavingInOut&,const StyleProperties&,const StyleProperties&,const StyleProperties&))&DefaultView::draw_paving,
       STATIC_VOID_DEFAULTVIEW_DRAW_PAVING_CONST_PAVINGINOUT_REF_CONST_STYLEPROPERTIES_REF_CONST_STYLEPROPERTIES_REF_CONST_STYLEPROPERTIES_REF,
       "p"_a, "boundary_style"_a=StyleProperties::boundary(), "outside_style"_a=StyleProperties::outside(), "inside_style"_a=StyleProperties::inside())
+
+    // Miscellanous
+
+    .def_static("draw_text", &DefaultView::draw_text,
+      STATIC_VOID_DEFAULTVIEW_DRAW_TEXT_CONST_VECTOR_REF_CONST_STRING_REF_CONST_INT_REF_CONST_STYLEPROPERTIES_REF,
+      "c"_a, "text"_a, "size"_a=10, "s"_a=StyleProperties())
+
+    .def_static("draw_raster", &DefaultView::draw_raster,
+      STATIC_VOID_DEFAULTVIEW_DRAW_RASTER_CONST_VECTOR_REF_CONST_VECTOR_REF_CONST_STRING_REF_CONST_BOOL_REF,
+      "c"_a, "size"_a, "filename"_a, "absolute_path"_a=false)
 
   ;
 }

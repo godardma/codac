@@ -148,6 +148,15 @@ void Figure2D_VIBes::draw_text(const Vector& c, const std::string& text, const i
   // Not yet implemented in VIBes
 }
 
+void Figure2D_VIBes::draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path)
+{
+  assert(c.size() == 2);
+  assert(size.size() == 2);
+  assert(size.min_coeff() > 0);
+  assert(!filename.empty());
+  // Not implemented yet
+}
+
 string Figure2D_VIBes::to_vibes_style(const StyleProperties& s)
 {
   return s.stroke_color.hex_str() + "[" + s.fill_color.hex_str() + "]";

@@ -43,6 +43,7 @@ namespace codac2
 
       // Miscellanous
       void draw_text(const Vector& c, const std::string& text, const int& size = 10, const StyleProperties& s = StyleProperties());
+      void draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path = false);
 
       static std::string to_vibes_style(const StyleProperties& s);
 

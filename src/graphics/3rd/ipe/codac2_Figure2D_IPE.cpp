@@ -291,6 +291,16 @@ void Figure2D_IPE::draw_text(const Vector& c, const std::string& text, const int
   // Not implemented yet
 }
 
+void Figure2D_IPE::draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path)
+{
+  assert(c.size() == 2);
+  assert(size.size() == 2);
+  assert(size.min_coeff() > 0);
+  assert(!filename.empty());
+
+  // Not implemented yet
+}
+
 double Figure2D_IPE::scale_x(double x) const
 {
   return (x-_fig.axes()[0].limits.lb())*_ratio[0];

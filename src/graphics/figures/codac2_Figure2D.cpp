@@ -287,3 +287,14 @@ void Figure2D::draw_text(const Vector& c, const string& text, const int& font_si
     output_fig->draw_text(c,text,font_size,s);
   
 }
+
+void Figure2D::draw_raster(const Vector& c, const Vector& size, const string& filename, const bool& absolute_path)
+{
+  assert_release(c.size() == 2);
+  assert_release(size.size() == 2);
+  assert_release(size.min_coeff() > 0);
+  assert_release(!filename.empty());
+
+  for(const auto& output_fig : _output_figures)
+    output_fig->draw_raster(c,size,filename,absolute_path);
+}

@@ -106,6 +106,7 @@ namespace codac2
 
       //Miscellaneous
       void draw_text(const Vector& c, const std::string& text, const int& font_size=10, const StyleProperties& s = StyleProperties());
+      void draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path = false);
 
       template<typename P>
       void draw_subpaving(const Subpaving<P>& p, const StyleProperties& s = StyleProperties())
@@ -269,6 +270,20 @@ namespace codac2
       {
         auto_init();
         selected_fig()->draw_subpaving(p, s);
+      }
+
+      // Miscellaneous
+
+      static void draw_text(const Vector& c, const std::string& text, const int& font_size = 10, const StyleProperties& s = StyleProperties())
+      {
+        auto_init();
+        selected_fig()->draw_text(c,text,font_size,s);
+      }
+
+      static void draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path = false)
+      {
+        auto_init();
+        selected_fig()->draw_raster(c,size,filename,absolute_path);
       }
 
 

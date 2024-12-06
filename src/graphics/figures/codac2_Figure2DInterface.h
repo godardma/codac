@@ -37,5 +37,6 @@ namespace codac2
 
       // Miscellanous
       virtual void draw_text(const Vector& c, const std::string& text, const int& size = 10, const StyleProperties& s = StyleProperties()) = 0;
+      virtual void draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path = false) = 0;
   };
 }
