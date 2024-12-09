@@ -17,6 +17,18 @@
 #include "codac2_IntervalVector.h"
 #include "vibes.h"
 
+#include <ipebase.h>
+#include <ipeimage.h>
+#include <ipebitmap.h>
+#include <ipedoc.h>
+#include <ipestyle.h>
+#include <ipeutils.h>
+#include <ipeobject.h>
+#include <ipepage.h>
+#include <ipestyle.h>
+#include <ipepswriter.h>
+#include <ipeattributes.h>
+
 namespace codac2
 {
   class Figure2D_IPE : public OutputFigure2D
@@ -65,15 +77,27 @@ namespace codac2
 
     protected:
 
+      void add_color(const Color& c);
       double scale_x(double x) const;
       double scale_y(double y) const;
       double scale_length(double y) const;
       void print_header_page();
 
-      std::ofstream _f, _f_temp_content;
-      const double _ipe_grid_size = 500.;
-      Vector _ratio { 1., 1. };
+      // std::ofstream _f, _f_temp_content;
+      // const double _ipe_grid_size = 500.;
+      // Vector _ratio { 1., 1. };
 
-      std::map<std::string,Color> _colors;
+      // std::map<std::string,Color> _colors;
+
+      // std::shared_ptr<ipe::Document> doc = std::make_shared<ipe::Document>();
+      // std::shared_ptr<ipe::Page> page = std::make_shared<ipe::Page>();
+      // std::shared_ptr<ipe::StyleSheet> stylesheet = std::make_shared<ipe::StyleSheet>();
+      // std::shared_ptr<ipe::Cascade> cascade = std::make_shared<ipe::Cascade>();
+
+      // ipe::Page *page = ipe::Page::basic();
+      // ipe::StyleSheet *stylesheet = new ipe::StyleSheet();
+      // ipe::Cascade *cascade = new ipe::Cascade();
+      // ipe::FileStream * stream;
+
   };
 }

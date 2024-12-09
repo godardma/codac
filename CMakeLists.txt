@@ -110,6 +110,13 @@
     #message(STATUS "[capd2codac] PKG_CAPD_LDFLAGS = ${PKG_CAPD_LDFLAGS}")
   endif()
 
+################################################################################
+# Looking for ipe (if needed)
+################################################################################
+
+  find_library(IPE_LIB ipe)
+  message(STATUS "Found IPE version: ${IPE_VERSION}")
+
 
 ################################################################################
 # Compile sources
