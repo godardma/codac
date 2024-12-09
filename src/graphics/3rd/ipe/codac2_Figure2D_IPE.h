@@ -17,6 +17,7 @@
 #include "codac2_IntervalVector.h"
 #include "vibes.h"
 
+
 namespace codac2
 {
   class Figure2D_IPE : public OutputFigure2D

@@ -154,7 +154,9 @@ void Figure2D_VIBes::draw_raster(const Vector& c, const Vector& size, const std:
   assert(size.size() == 2);
   assert(size.min_coeff() > 0);
   assert(!filename.empty());
-  // Not implemented yet
+  assert(absolute_path);
+  
+  vibes::drawRaster(filename, c[i()],c[j()], size[i()],size[j()], _params);
 }
 
 string Figure2D_VIBes::to_vibes_style(const StyleProperties& s)

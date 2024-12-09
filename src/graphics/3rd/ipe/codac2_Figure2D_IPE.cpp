@@ -6,10 +6,19 @@
  *  \copyright  Copyright 2024 Codac Team
  *  \license    GNU Lesser General Public License (LGPL)
  */
+#define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
 
 #include <cstdio>
 #include "codac2_Figure2D_IPE.h"
 #include "codac2_math.h"
+
+#include "stb_image.h"
+#include "stb_image_write.h"
+#include <zlib.h>
+#include <openssl/bio.h>
+#include <openssl/evp.h>
+#include <openssl/buffer.h>
 
 using namespace std;
 using namespace codac2;
@@ -93,7 +102,7 @@ void Figure2D_IPE::begin_path(const StyleProperties& s, bool tip=false)
 
   _f_temp_content << "\n \
     <path layer=\"alpha\" \n \
-    stroke=\" " << ipe_str(s.stroke_color) << "\" \n \
+    stroke=\"codac_color_" << ipe_str(s.stroke_color) << "\" \n \
     fill=\"codac_color_" << ipe_str(s.fill_color) << "\" \n \
     opacity=\"" << ipe_opacity(s.fill_color) << "%\" \n \
     stroke-opacity=\"" << ipe_opacity(s.stroke_color) << "%\" \n \
@@ -291,13 +300,65 @@ void Figure2D_IPE::draw_text(const Vector& c, const std::string& text, const int
   // Not implemented yet
 }
 
+std::string base64_encode(const std::string& input) {
+    BIO *bio, *b64;
+    BUF_MEM *bufferPtr;
+
+    b64 = BIO_new(BIO_f_base64());
+    bio = BIO_new(BIO_s_mem());
+    bio = BIO_push(b64, bio);
+
+    // Désactiver les sauts de ligne
+    BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL);
+
+    BIO_write(bio, input.c_str(), input.size());
+    BIO_flush(bio);
+    BIO_get_mem_ptr(bio, &bufferPtr);
+
+    std::string encoded(bufferPtr->data, bufferPtr->length);
+    BIO_free_all(bio);
+    return encoded;
+}
+
+std::string compress_encode_image(const char* filename, int& width, int& height)
+{
+  int channels;
+  unsigned char* img = stbi_load(filename, &width, &height, &channels, 0);
+  size_t img_size;
+  std::vector<unsigned char> data;
+
+  img_size = width * height * 3; // only RGB, no alpha
+  data.resize(img_size);
+  for (int i = 0; i < width * height; ++i) {
+      data[i * 3] = img[i * channels];
+      data[i * 3 + 1] = img[i * channels + 1];
+      data[i * 3 + 2] = img[i * channels + 2];
+  }
+
+  std::vector<unsigned char> compressed(compressBound(img_size));
+  uLongf compressed_size = compressed.size();
+
+  compressed.resize(compressed_size); // to comment ?
+  string compressed_str = string((char*)compressed.data(), compressed.size());
+  std::string encoded = base64_encode(compressed_str);
+
+  stbi_image_free(img);
+  return encoded;
+
+}
+
 void Figure2D_IPE::draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path)
 {
   assert(c.size() == 2);
   assert(size.size() == 2);
   assert(size.min_coeff() > 0);
   assert(!filename.empty());
+  assert(absolute_path);
 
+  int width, height;
+  std::string encoded = compress_encode_image(filename.c_str(), width, height);
+
+  _f_temp_content<<"\n<image layer=\"alpha\" rect=\""<<scale_x(c[0])<<" "<<scale_y(c[1])<<" "<<scale_length(size[0])<<" "<<scale_length(size[1])<<"\" bitmap=\"1\"/>";
   // Not implemented yet
 }
 

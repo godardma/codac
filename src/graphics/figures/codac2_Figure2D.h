@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <filesystem>
 #include "codac2_Index.h"
 #include "codac2_Figure2DInterface.h"
 #include "codac2_OutputFigure2D.h"
@@ -283,7 +284,13 @@ namespace codac2
       static void draw_raster(const Vector& c, const Vector& size, const std::string& filename, const bool& absolute_path = false)
       {
         auto_init();
-        selected_fig()->draw_raster(c,size,filename,absolute_path);
+        if (!absolute_path)
+        {
+          std::string path = std::filesystem::current_path().string() + "/" + filename;
+          selected_fig()->draw_raster(c,size,path,true);
+        }
+        else
+          selected_fig()->draw_raster(c,size,filename,true);
       }
 
 

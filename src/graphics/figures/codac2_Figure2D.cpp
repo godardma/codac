@@ -296,5 +296,11 @@ void Figure2D::draw_raster(const Vector& c, const Vector& size, const string& fi
   assert_release(!filename.empty());
 
   for(const auto& output_fig : _output_figures)
-    output_fig->draw_raster(c,size,filename,absolute_path);
+    if(!absolute_path)
+    {
+      string path = filesystem::current_path().string() + "/" + filename;
+      output_fig->draw_raster(c,size,path,true);
+    }
+    else
+      output_fig->draw_raster(c,size,filename,true);
 }

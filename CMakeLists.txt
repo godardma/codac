@@ -94,6 +94,15 @@
   message(STATUS "Found Eigen3 version ${Eigen3_VERSION}")
   add_definitions(${EIGEN3_DEFINITIONS})
 
+################################################################################
+# Looking for ZLIB and OpensSSL (for image processing)
+################################################################################
+
+find_package(ZLIB REQUIRED)
+message(STATUS "Found ZLIB version ${ZLIB_VERSION}")
+find_package(OpenSSL REQUIRED)
+message(STATUS "Found OpenSSL version ${OPENSSL_VERSION}")
+
 
 ################################################################################
 # Looking for CAPD (if needed)

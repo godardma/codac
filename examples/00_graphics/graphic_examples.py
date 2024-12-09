@@ -72,3 +72,10 @@ for i in range (20):
     fig3.draw_box([[i,i+1],[-3,-2]],[Color.black(),cmap_blue_tube.color(ratio)])
     fig3.draw_box([[i,i+1],[-4,-3]],[Color.black(),cmap_red_tube.color(ratio)])
     fig3.draw_box([[i,i+1],[-5,-4]],[Color.black(),cmap_rainbow.color(ratio)])
+
+fig3 = Figure2D("Raster", GraphicOutput.VIBES | GraphicOutput.IPE)
+fig3.set_axes(axis(0,[-5,25]), axis(1,[-4,8]))
+fig3.set_window_properties([1100,250],[500,500])
+
+fig3.draw_raster([0,5],[20,5],"batman.png")
+fig3.draw_box([[0,20],[0,5]],Color.red())
