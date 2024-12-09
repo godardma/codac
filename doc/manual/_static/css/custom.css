@@ -1,0 +1,10 @@
+div.rst-content a:visited
+{
+  color: #2980b9;
+  text-decoration: none;
+}
+
+div.rst-content li.toctree-l1 > a
+{
+  font-weight: bold;
+}

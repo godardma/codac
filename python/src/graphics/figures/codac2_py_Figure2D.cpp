@@ -136,6 +136,16 @@ void export_Figure2D(py::module& m)
       VOID_FIGURE2D_DRAW_AUV_CONST_VECTOR_REF_FLOAT_CONST_STYLEPROPERTIES_REF,
       "x"_a, "size"_a, "s"_a=StyleProperties())
 
+    // Pavings
+
+    .def("draw_paving", (void(Figure2D::*)(const PavingOut&,const StyleProperties&,const StyleProperties&))&Figure2D::draw_paving,
+      VOID_FIGURE2D_DRAW_PAVING_CONST_PAVINGOUT_REF_CONST_STYLEPROPERTIES_REF_CONST_STYLEPROPERTIES_REF,
+      "p"_a, "boundary_style"_a=StyleProperties::boundary(), "outside_style"_a=StyleProperties::outside())
+
+    .def("draw_paving", (void(Figure2D::*)(const PavingInOut&,const StyleProperties&,const StyleProperties&,const StyleProperties&))&Figure2D::draw_paving,
+      VOID_FIGURE2D_DRAW_PAVING_CONST_PAVINGINOUT_REF_CONST_STYLEPROPERTIES_REF_CONST_STYLEPROPERTIES_REF_CONST_STYLEPROPERTIES_REF,
+      "p"_a, "boundary_style"_a=StyleProperties::boundary(), "outside_style"_a=StyleProperties::outside(), "inside_style"_a=StyleProperties::inside())
+
     // Miscellanous
 
     .def("draw_text", &Figure2D::draw_text,

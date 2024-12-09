@@ -14,6 +14,11 @@ using namespace codac2;
 
 namespace codac2
 {
+  PavingOut pave(const IntervalVector& x, std::shared_ptr<const CtcBase<IntervalVector>> c, double eps)
+  {
+    return pave(x, *c, eps);
+  }
+
   PavingOut pave(const IntervalVector& x, const CtcBase<IntervalVector>& c, double eps)
   {
     assert_release(eps > 0.);
@@ -48,6 +53,11 @@ namespace codac2
     return p;
   }
   
+  PavingInOut pave(const IntervalVector& x, std::shared_ptr<const SepBase> s, double eps)
+  {
+    return pave(x, *s, eps);
+  }
+
   PavingInOut pave(const IntervalVector& x, const SepBase& s, double eps)
   {
     assert_release(eps > 0.);

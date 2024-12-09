@@ -29,7 +29,10 @@ namespace codac2
    * \param y interval value
    * \return intersection result
    */
-  Interval operator&(const Interval& x, const Interval& y);
+  inline Interval operator&(const Interval& x, const Interval& y)
+  {
+    return ibex::operator&(x,y);
+  }
 
   /**
    * \brief Returns the squared-union of two intervals: \f$[x]\sqcup[y]\f$
@@ -40,7 +43,10 @@ namespace codac2
    * \param y interval value
    * \return squared-union result
    */
-  Interval operator|(const Interval& x, const Interval& y);
+  inline Interval operator|(const Interval& x, const Interval& y)
+  {
+    return ibex::operator|(x,y);
+  }
 
   /**
    * \brief Returns this
@@ -50,7 +56,10 @@ namespace codac2
    * \param x interval value
    * \return the same interval
    */
-  const Interval& operator+(const Interval& x);
+  inline const Interval& operator+(const Interval& x)
+  {
+    return x;
+  }
 
   /**
    * \brief Returns \f$[x]+y\f$ with \f$y\in\mathbb{R}\f$
@@ -59,7 +68,10 @@ namespace codac2
    * \param y real value
    * \return the addition result
    */
-  Interval operator+(const Interval& x, double y);
+  inline Interval operator+(const Interval& x, double y)
+  {
+    return ibex::operator+(x,y);
+  }
 
   /**
    * \brief Returns \f$x+[y]\f$ with \f$x\in\mathbb{R}\f$
@@ -68,7 +80,10 @@ namespace codac2
    * \param y interval value
    * \return the addition result
    */
-  Interval operator+(double x, const Interval& y);
+  inline Interval operator+(double x, const Interval& y)
+  {
+    return ibex::operator+(x,y);
+  }
 
   /**
    * \brief Returns \f$[x]+[y]\f$
@@ -77,7 +92,10 @@ namespace codac2
    * \param y interval value
    * \return the addition result
    */
-  Interval operator+(const Interval& x, const Interval& y);
+  inline Interval operator+(const Interval& x, const Interval& y)
+  {
+    return ibex::operator+(x,y);
+  }
 
   /**
    * \brief Returns \f$[x]-y\f$ with \f$y\in\mathbb{R}\f$
@@ -104,7 +122,10 @@ namespace codac2
    * \param y interval value
    * \return the substraction result
    */
-  Interval operator-(const Interval& x, const Interval& y);
+  inline Interval operator-(const Interval& x, const Interval& y)
+  {
+    return ibex::operator-(x, y);
+  }
 
   /**
    * \brief Returns \f$[x]*y\f$ with \f$y\in\mathbb{R}\f$
@@ -113,7 +134,10 @@ namespace codac2
    * \param y real value
    * \return the multiplication result
    */
-  Interval operator*(const Interval& x, double y);
+  inline Interval operator*(const Interval& x, double y)
+  {
+    return ibex::operator*(x,y);
+  }
 
   /**
    * \brief Returns \f$x*[y]\f$ with \f$x\in\mathbb{R}\f$
@@ -122,7 +146,10 @@ namespace codac2
    * \param y interval value
    * \return the multiplication result
    */
-  Interval operator*(double x, const Interval& y);
+  inline Interval operator*(double x, const Interval& y)
+  {
+    return ibex::operator*(x,y);
+  }
 
   /**
    * \brief Returns \f$[x]*[y]\f$
@@ -131,7 +158,10 @@ namespace codac2
    * \param y interval value
    * \return the multiplication result
    */
-  Interval operator*(const Interval& x, const Interval& y);
+  inline Interval operator*(const Interval& x, const Interval& y)
+  {
+    return ibex::operator*(x,y);
+  }
 
   /**
    * \brief Returns \f$[x]/y\f$ with \f$y\in\mathbb{R}\f$
@@ -140,7 +170,10 @@ namespace codac2
    * \param y real value
    * \return the division result
    */
-  Interval operator/(const Interval& x, double y);
+  inline Interval operator/(const Interval& x, double y)
+  {
+    return ibex::operator/(x,y);
+  }
 
   /**
    * \brief Returns \f$x/[y]\f$ with \f$x\in\mathbb{R}\f$
@@ -149,7 +182,10 @@ namespace codac2
    * \param y interval value
    * \return the division result
    */
-  Interval operator/(double x, const Interval& y);
+  inline Interval operator/(double x, const Interval& y)
+  {
+    return ibex::operator/(x,y);
+  }
 
   /**
    * \brief Returns \f$[x]/[y]\f$
@@ -158,7 +194,10 @@ namespace codac2
    * \param y interval value
    * \return the division result
    */
-  Interval operator/(const Interval& x, const Interval& y);
+  inline Interval operator/(const Interval& x, const Interval& y)
+  {
+    return ibex::operator/(x,y);
+  }
 
   /**
    * \brief Returns \f$[x]^2\f$
@@ -166,7 +205,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval sqr(const Interval& x);
+  inline Interval sqr(const Interval& x)
+  {
+    return ibex::sqr(x);
+  }
 
   /**
    * \brief Returns \f$\sqrt{[x]}\f$
@@ -174,7 +216,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval sqrt(const Interval& x);
+  inline Interval sqrt(const Interval& x)
+  {
+    return ibex::sqrt(x);
+  }
 
   /**
    * \brief Returns \f$[x]^n\f$, \f$n\in\mathbb{Z}\f$
@@ -183,7 +228,10 @@ namespace codac2
    * \param n integer power value
    * \return the operation result
    */
-  Interval pow(const Interval& x, int n);
+  inline Interval pow(const Interval& x, int n)
+  {
+    return ibex::pow(x,n);
+  }
 
   /**
    * \brief Returns \f$[x]^d\f$, \f$d\in\mathbb{R}\f$
@@ -192,7 +240,10 @@ namespace codac2
    * \param d real power value
    * \return the operation result
    */
-  Interval pow(const Interval& x, double d);
+  inline Interval pow(const Interval& x, double d)
+  {
+    return ibex::pow(x,d);
+  }
 
   /**
    * \brief Returns \f$[x]^{[y]}\f$, \f$y\in\mathbb{IR}\f$
@@ -201,7 +252,10 @@ namespace codac2
    * \param y interval power value
    * \return the operation result
    */
-  Interval pow(const Interval& x, const Interval& y);
+  inline Interval pow(const Interval& x, const Interval& y)
+  {
+    return ibex::pow(x,y);
+  }
 
   /**
    * \brief Returns the n-th root: \f$\sqrt[n]{[x]}\f$
@@ -210,7 +264,10 @@ namespace codac2
    * \param n integer root
    * \return the operation result
    */
-  Interval root(const Interval& x, int n);
+  inline Interval root(const Interval& x, int n)
+  {
+    return ibex::root(x,n);
+  }
 
   /**
    * \brief Returns \f$\exp([x])\f$
@@ -218,7 +275,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval exp(const Interval& x);
+  inline Interval exp(const Interval& x)
+  {
+    return ibex::exp(x);
+  }
 
   /**
    * \brief Returns \f$\log([x])\f$
@@ -226,7 +286,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval log(const Interval& x);
+  inline Interval log(const Interval& x)
+  {
+    return ibex::log(x);
+  }
 
   /**
    * \brief Returns \f$\cos([x])\f$
@@ -234,7 +297,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval cos(const Interval& x);
+  inline Interval cos(const Interval& x)
+  {
+    return ibex::cos(x);
+  }
 
   /**
    * \brief Returns \f$\sin([x])\f$
@@ -242,7 +308,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval sin(const Interval& x);
+  inline Interval sin(const Interval& x)
+  {
+    return ibex::sin(x);
+  }
 
   /**
    * \brief Returns \f$\tan([x])\f$
@@ -250,7 +319,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval tan(const Interval& x);
+  inline Interval tan(const Interval& x)
+  {
+    return ibex::tan(x);
+  }
 
   /**
    * \brief Returns \f$\acos([x])\f$
@@ -258,7 +330,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval acos(const Interval& x);
+  inline Interval acos(const Interval& x)
+  {
+    return ibex::acos(x);
+  }
 
   /**
    * \brief Returns \f$\asin([x])\f$
@@ -266,7 +341,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval asin(const Interval& x);
+  inline Interval asin(const Interval& x)
+  {
+    return ibex::asin(x);
+  }
 
   /**
    * \brief Returns \f$\atan([x])\f$
@@ -274,7 +352,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval atan(const Interval& x);
+  inline Interval atan(const Interval& x)
+  {
+    return ibex::atan(x);
+  }
 
   /**
    * \brief Returns \f$\mathrm{arctan2}([y],[x])\f$
@@ -283,7 +364,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval atan2(const Interval& y, const Interval& x);
+  inline Interval atan2(const Interval& y, const Interval& x)
+  {
+    return ibex::atan2(y,x);
+  }
 
   /**
    * \brief Returns \f$\cosh([x])\f$
@@ -291,7 +375,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval cosh(const Interval& x);
+  inline Interval cosh(const Interval& x)
+  {
+    return ibex::cosh(x);
+  }
 
   /**
    * \brief Returns \f$\sinh([x])\f$
@@ -299,7 +386,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval sinh(const Interval& x);
+  inline Interval sinh(const Interval& x)
+  {
+    return ibex::sinh(x);
+  }
 
   /**
    * \brief Returns \f$\tanh([x])\f$
@@ -307,7 +397,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval tanh(const Interval& x);
+  inline Interval tanh(const Interval& x)
+  {
+    return ibex::tanh(x);
+  }
 
   /**
    * \brief Returns \f$\acosh([x])\f$
@@ -315,7 +408,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval acosh(const Interval& x);
+  inline Interval acosh(const Interval& x)
+  {
+    return ibex::acosh(x);
+  }
 
   /**
    * \brief Returns \f$\asinh([x])\f$
@@ -323,7 +419,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval asinh(const Interval& x);
+  inline Interval asinh(const Interval& x)
+  {
+    return ibex::asinh(x);
+  }
 
   /**
    * \brief Returns \f$\atanh([x])\f$
@@ -331,7 +430,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval atanh(const Interval& x);
+  inline Interval atanh(const Interval& x)
+  {
+    return ibex::atanh(x);
+  }
 
   /**
    * \brief Returns \f$\mid[x]\mid = \left\{\mid x \mid, x\in[x]\right\}\f$
@@ -339,7 +441,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval abs(const Interval& x);
+  inline Interval abs(const Interval& x)
+  {
+    return ibex::abs(x);
+  }
 
   /**
    * \brief Returns \f$\min([x],[y])=\left\{\min(x,y), x\in[x], y\in[y]\right\}\f$
@@ -348,7 +453,10 @@ namespace codac2
    * \param y interval value
    * \return the operation result
    */
-  Interval min(const Interval& x, const Interval& y);
+  inline Interval min(const Interval& x, const Interval& y)
+  {
+    return ibex::min(x,y);
+  }
 
   /**
    * \brief Returns \f$\max([x],[y])=\left\{\max(x,y), x\in[x], y\in[y]\right\}\f$
@@ -357,7 +465,10 @@ namespace codac2
    * \param y interval value
    * \return the operation result
    */
-  Interval max(const Interval& x, const Interval& y);
+  inline Interval max(const Interval& x, const Interval& y)
+  {
+    return ibex::max(x,y);
+  }
 
   /**
    * \brief Returns \f$\sign([x])=\left[\left\{\sign(x), x\in[x]\right\}\right]\f$
@@ -367,7 +478,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval sign(const Interval& x);
+  inline Interval sign(const Interval& x)
+  {
+    return ibex::sign(x);
+  }
 
   /**
    * \brief Returns the largest integer interval included in \f$[x]\f$
@@ -375,7 +489,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval integer(const Interval& x);
+  inline Interval integer(const Interval& x)
+  {
+    return ibex::integer(x);
+  }
 
   /**
    * \brief Returns floor of \f$[x]\f$
@@ -383,7 +500,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval floor(const Interval& x);
+  inline Interval floor(const Interval& x)
+  {
+    return ibex::floor(x);
+  }
 
   /**
    * \brief Returns ceil of \f$[x]\f$
@@ -391,7 +511,10 @@ namespace codac2
    * \param x interval value
    * \return the operation result
    */
-  Interval ceil(const Interval& x);
+  inline Interval ceil(const Interval& x)
+  {
+    return ibex::ceil(x);
+  }
 
   /**
    * \brief Computes the backward (reverse) addition
@@ -403,7 +526,10 @@ namespace codac2
    * \param x1 prior value for \f$[x_1]\f$, may be contracted
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    */
-  void bwd_add(const Interval& y, Interval& x1, Interval& x2);
+  inline void bwd_add(const Interval& y, Interval& x1, Interval& x2)
+  {
+    ibex::bwd_add(y,x1,x2);
+  }
 
   /**
    * \brief Computes the backward (reverse) substraction
@@ -415,7 +541,10 @@ namespace codac2
    * \param x1 prior value for \f$[x_1]\f$, may be contracted
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    */
-  void bwd_sub(const Interval& y, Interval& x1, Interval& x2);
+  inline void bwd_sub(const Interval& y, Interval& x1, Interval& x2)
+  {
+    ibex::bwd_sub(y,x1,x2);
+  }
 
   /**
    * \brief Computes the backward (reverse) multiplication
@@ -427,7 +556,10 @@ namespace codac2
    * \param x1 prior value for \f$[x_1]\f$, may be contracted
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    */
-  void bwd_mul(const Interval& y, Interval& x1, Interval& x2);
+  inline void bwd_mul(const Interval& y, Interval& x1, Interval& x2)
+  {
+    ibex::bwd_mul(y,x1,x2);
+  }
 
   /**
    * \brief Computes the backward (reverse) division
@@ -439,7 +571,10 @@ namespace codac2
    * \param x1 prior value for \f$[x_1]\f$, may be contracted
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    */
-  void bwd_div(const Interval& y, Interval& x1, Interval& x2);
+  inline void bwd_div(const Interval& y, Interval& x1, Interval& x2)
+  {
+    ibex::bwd_div(y,x1,x2);
+  }
 
   /**
    * \brief Computes the backward (reverse) squared operation
@@ -450,7 +585,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_sqr(const Interval& y, Interval& x);
+  inline void bwd_sqr(const Interval& y, Interval& x)
+  {
+    ibex::bwd_sqr(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) squared-root operation
@@ -461,7 +599,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_sqrt(const Interval& y, Interval& x);
+  inline void bwd_sqrt(const Interval& y, Interval& x)
+  {
+    ibex::bwd_sqrt(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) power operation
@@ -473,7 +614,10 @@ namespace codac2
    * \param x prior value for \f$[x]\f$, may be contracted
    * \param p power integer value
    */
-  void bwd_pow(const Interval& y, Interval& x, int p);
+  inline void bwd_pow(const Interval& y, Interval& x, int p)
+  {
+    ibex::bwd_pow(y,p,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) power operation
@@ -485,7 +629,11 @@ namespace codac2
    * \param x prior value for \f$[x]\f$, may be contracted
    * \param p prior value for \f$[p]\f$, may be contracted
    */
-  void bwd_pow(const Interval& y, Interval& x, Interval& p);
+  inline void bwd_pow(const Interval& y, Interval& x, Interval& p)
+  {
+    assert(p.is_degenerated() && "bwd_power(y,x1,x2) (with x1 and x2 intervals) not implemented yet with Gaol");
+    ibex::bwd_pow(y,p.mid(),x);
+  }
 
   /**
    * \brief Computes the backward (reverse) root operation
@@ -497,7 +645,10 @@ namespace codac2
    * \param x prior value for \f$[x]\f$, may be contracted
    * \param p root integer value
    */
-  void bwd_root(const Interval& y, Interval& x, int p);
+  inline void bwd_root(const Interval& y, Interval& x, int p)
+  {
+    ibex::bwd_root(y,p,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) exponential operation
@@ -508,7 +659,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_exp(const Interval& y, Interval& x);
+  inline void bwd_exp(const Interval& y, Interval& x)
+  {
+    ibex::bwd_exp(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) logarithmic operation
@@ -519,7 +673,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_log(const Interval& y, Interval& x);
+  inline void bwd_log(const Interval& y, Interval& x)
+  {
+    ibex::bwd_log(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) cosine operation
@@ -530,7 +687,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_cos(const Interval& y, Interval& x);
+  inline void bwd_cos(const Interval& y, Interval& x)
+  {
+    ibex::bwd_cos(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) sine operation
@@ -541,7 +701,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_sin(const Interval& y, Interval& x);
+  inline void bwd_sin(const Interval& y, Interval& x)
+  {
+    ibex::bwd_sin(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) tangent operation
@@ -552,7 +715,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_tan(const Interval& y, Interval& x);
+  inline void bwd_tan(const Interval& y, Interval& x)
+  {
+    ibex::bwd_tan(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) arccos operation
@@ -563,7 +729,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_acos(const Interval& y, Interval& x);
+  inline void bwd_acos(const Interval& y, Interval& x)
+  {
+    ibex::bwd_acos(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) arcsin operation
@@ -574,7 +743,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_asin(const Interval& y, Interval& x);
+  inline void bwd_asin(const Interval& y, Interval& x)
+  {
+    ibex::bwd_asin(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) arctan operation
@@ -585,7 +757,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_atan(const Interval& y, Interval& x);
+  inline void bwd_atan(const Interval& y, Interval& x)
+  {
+    ibex::bwd_atan(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) arctan2 operation
@@ -597,7 +772,10 @@ namespace codac2
    * \param x1 prior value for \f$[x_1]\f$, may be contracted
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    */
-  void bwd_atan2(const Interval& y, Interval& x1, Interval& x2);
+  inline void bwd_atan2(const Interval& y, Interval& x1, Interval& x2)
+  {
+    ibex::bwd_atan2(y,x1,x2);
+  }
 
   /**
    * \brief Computes the backward (reverse) hyperbolic cosine operation
@@ -608,7 +786,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_cosh(const Interval& y, Interval& x);
+  inline void bwd_cosh(const Interval& y, Interval& x)
+  {
+    ibex::bwd_cosh(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) hyperbolic sine operation
@@ -619,7 +800,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_sinh(const Interval& y, Interval& x);
+  inline void bwd_sinh(const Interval& y, Interval& x)
+  {
+    ibex::bwd_sinh(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) hyperbolic tangent operation
@@ -630,7 +814,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_tanh(const Interval& y, Interval& x);
+  inline void bwd_tanh(const Interval& y, Interval& x)
+  {
+    ibex::bwd_tanh(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) hyperbolic arccos operation
@@ -641,7 +828,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_acosh(const Interval& y, Interval& x);
+  inline void bwd_acosh(const Interval& y, Interval& x)
+  {
+    ibex::bwd_acosh(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) hyperbolic arcsin operation
@@ -652,7 +842,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_asinh(const Interval& y, Interval& x);
+  inline void bwd_asinh(const Interval& y, Interval& x)
+  {
+    ibex::bwd_asinh(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) hyperbolic arctan operation
@@ -663,7 +856,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_atanh(const Interval& y, Interval& x);
+  inline void bwd_atanh(const Interval& y, Interval& x)
+  {
+    ibex::bwd_atanh(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) absolute-value operation
@@ -674,7 +870,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_abs(const Interval& y, Interval& x);
+  inline void bwd_abs(const Interval& y, Interval& x)
+  {
+    ibex::bwd_abs(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) of the max operation
@@ -686,7 +885,10 @@ namespace codac2
    * \param x1 prior value for \f$[x_1]\f$, may be contracted
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    */
-  void bwd_min(const Interval& y, Interval& x1, Interval& x2);
+  inline void bwd_min(const Interval& y, Interval& x1, Interval& x2)
+  {
+    ibex::bwd_min(y,x1,x2);
+  }
 
   /**
    * \brief Computes the backward (reverse) of the min operation
@@ -698,7 +900,10 @@ namespace codac2
    * \param x1 prior value for \f$[x_1]\f$, may be contracted
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    */
-  void bwd_max(const Interval& y, Interval& x1, Interval& x2);
+  inline void bwd_max(const Interval& y, Interval& x1, Interval& x2)
+  {
+    ibex::bwd_max(y,x1,x2);
+  }
 
   /**
    * \brief Computes the backward (reverse) sign operation
@@ -709,7 +914,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_sign(const Interval& y, Interval& x);
+  inline void bwd_sign(const Interval& y, Interval& x)
+  {
+    ibex::bwd_sign(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) floor operation
@@ -720,7 +928,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_floor(const Interval& y, Interval& x);
+  inline void bwd_floor(const Interval& y, Interval& x)
+  {
+    ibex::bwd_floor(y,x);
+  }
 
   /**
    * \brief Computes the backward (reverse) ceil operation
@@ -731,7 +942,10 @@ namespace codac2
    * \param y interval value (result of the forward operation)
    * \param x prior value for \f$[x]\f$, may be contracted
    */
-  void bwd_ceil(const Interval& y, Interval& x);
+  inline void bwd_ceil(const Interval& y, Interval& x)
+  {
+    ibex::bwd_ceil(y,x);
+  }
 
   /**
    * \brief Contract \f$[x_1]\f$ and \f$[x_2]\f$ w.r.t. the fact that they are equivalent modulo the period \f$p\f$
@@ -740,6 +954,9 @@ namespace codac2
    * \param x2 prior value for \f$[x_2]\f$, may be contracted
    * \param p period value
    */
-  void bwd_imod(Interval& x1, Interval& x2, double p);
+  inline void bwd_imod(Interval& x1, Interval& x2, double p)
+  {
+    ibex::bwd_imod(x1,x2,p);
+  }
 
 }

@@ -21,6 +21,7 @@
 #include <ibex_Interval.h>
 #include "codac2_Index.h"
 #include "codac2_Domain.h"
+#include "codac2_assert.h"
 
 namespace codac2
 {
@@ -511,44 +512,60 @@ namespace codac2
        * 
        * \return an empty set
        */
-      static Interval empty();
+      static Interval empty()
+      {
+        return ibex::Interval::empty_set();
+      }
 
       /**
        * \brief Provides an interval for \f$[0]\f$
        * 
        * \return an interval containing \f$0\f$
        */
-      static Interval zero();
-      static Interval zeros();
+      static Interval zero()
+      {
+        return ibex::Interval::zero();
+      }
 
       /**
        * \brief Provides an interval for \f$[1]\f$
        * 
        * \return an interval containing \f$1\f$
        */
-      static Interval one();
-      static Interval ones();
+      static Interval one()
+      {
+        return ibex::Interval::one();
+      }
 
       /**
        * \brief Provides an interval for \f$[\frac{\pi}{2}]\f$
        * 
        * \return an interval containing \f$\frac{\pi}{2}\f$
        */
-      static Interval half_pi();
+      static Interval half_pi()
+      {
+        return ibex::Interval::half_pi();
+      }
 
       /**
        * \brief Provides an interval for \f$[\pi]\f$
        * 
        * \return an interval containing \f$\pi\f$
        */
-      static Interval pi();
+      static Interval pi()
+      {
+        return ibex::Interval::pi();
+      }
 
       /**
        * \brief Provides an interval for \f$[2\pi]\f$
        * 
        * \return an interval containing \f$2\pi\f$
        */
-      static Interval two_pi();
+      static Interval two_pi()
+      {
+        return ibex::Interval::two_pi();
+      }
       
       friend std::ostream& operator<<(std::ostream& os, const Interval& x);
 
@@ -678,5 +695,376 @@ namespace codac2
   inline double next_float(double x)
   {
     return ibex::next_float(x);
+  }
+}
+
+// Inline functions
+
+namespace codac2
+{
+  inline Interval::Interval()
+    : ibex::Interval()
+  { }
+
+  inline Interval::Interval(double a)
+    : ibex::Interval(a)
+  { }
+
+  inline Interval::Interval(double a, double b)
+    : ibex::Interval(a,b)
+  { }
+
+  inline Interval::Interval(const Interval& x)
+    : ibex::Interval(x)
+  { }
+
+  inline Interval::Interval(std::array<double,1> array)
+    : ibex::Interval(array)
+  { }
+
+  inline Interval::Interval(std::array<double,2> array)
+    : ibex::Interval(array)
+  { }
+
+  inline Interval::Interval(std::initializer_list<double> l)
+    : Interval()
+  {
+    init_from_list(l);
+  }
+
+  inline Interval& Interval::init(const Interval& x)
+  {
+    *this = x;
+    return *this;
+  }
+
+  inline Interval& Interval::init_from_list(const std::list<double>& l)
+  {
+    assert_release((l.size() == 1 || l.size() == 2)
+      && "'Interval' can only be defined by one or two 'double' values.");
+    *this = Interval(*l.begin(),*std::prev(l.end()));
+    return *this;
+  }
+
+  inline Interval& Interval::operator=(const Interval& x)
+  {
+    ibex::Interval::operator=(x);
+    return *this;
+  }
+
+  inline bool Interval::operator==(const Interval& x) const
+  {
+    return ibex::Interval::operator==(x);
+  }
+  
+  inline bool Interval::operator!=(const Interval& x) const
+  {
+    return ibex::Interval::operator!=(x);
+  }
+
+  inline double Interval::lb() const
+  {
+    return ibex::Interval::lb();
+  }
+
+  inline double Interval::ub() const
+  {
+    return ibex::Interval::ub();
+  }
+
+  inline double Interval::mid() const
+  {
+    return ibex::Interval::mid();
+  }
+
+  inline double Interval::mag() const
+  {
+    return ibex::Interval::mag();
+  }
+
+  inline double Interval::mig() const
+  {
+    return ibex::Interval::mig();
+  }
+
+  inline double Interval::rand() const
+  {
+    if(is_empty())
+      return std::numeric_limits<double>::quiet_NaN();
+
+    double a = std::max<double>(next_float(-oo),lb());
+    double b = std::min<double>(previous_float(oo),ub());
+    return a + (((double)std::rand())/(double)RAND_MAX)*(b-a);
+  }
+
+  inline double Interval::rad() const
+  {
+    return ibex::Interval::rad();
+  }
+
+  inline double Interval::diam() const
+  {
+    return ibex::Interval::diam();
+  }
+
+  inline double Interval::volume() const
+  {
+    return ibex::Interval::diam();
+  }
+
+  inline Index Interval::size() const
+  {
+    return 1;
+  }
+
+  inline void Interval::set_empty()
+  {
+    ibex::Interval::set_empty();
+  }
+  
+  inline bool Interval::is_empty() const
+  {
+    return ibex::Interval::is_empty();
+  }
+
+  inline bool Interval::contains(const double& x) const
+  {
+    return ibex::Interval::contains(x);
+  }
+
+  inline bool Interval::interior_contains(const double& x) const
+  {
+    return ibex::Interval::interior_contains(x);
+  }
+
+  inline bool Interval::is_unbounded() const
+  {
+    return ibex::Interval::is_unbounded();
+  }
+  
+  inline bool Interval::is_degenerated() const
+  {
+    return ibex::Interval::is_degenerated();
+  }
+
+  inline bool Interval::intersects(const Interval &x) const
+  {
+    return ibex::Interval::intersects(x);
+  }
+  
+  inline bool Interval::is_disjoint(const Interval& x) const
+  {
+    return ibex::Interval::is_disjoint(x);
+  }
+  
+  inline bool Interval::overlaps(const Interval& x) const
+  {
+    return ibex::Interval::overlaps(x);
+  }
+  
+  inline bool Interval::is_subset(const Interval& x) const
+  {
+    return ibex::Interval::is_subset(x);
+  }
+  
+  inline bool Interval::is_strict_subset(const Interval& x) const
+  {
+    return ibex::Interval::is_strict_subset(x);
+  }
+  
+  inline bool Interval::is_interior_subset(const Interval& x) const
+  {
+    return ibex::Interval::is_interior_subset(x);
+  }
+  
+  inline bool Interval::is_strict_interior_subset(const Interval& x) const
+  {
+    return ibex::Interval::is_strict_interior_subset(x);
+  }
+  
+  inline bool Interval::is_superset(const Interval& x) const
+  {
+    return ibex::Interval::is_superset(x);
+  }
+  
+  inline bool Interval::is_strict_superset(const Interval& x) const
+  {
+    return ibex::Interval::is_strict_superset(x);
+  }
+  
+  inline Interval& Interval::inflate(const double& rad)
+  {
+    ibex::Interval::inflate(rad);
+    return *this;
+  }
+
+  inline bool Interval::is_bisectable() const
+  {
+    return ibex::Interval::is_bisectable();
+  }
+
+  inline std::pair<Interval,Interval> Interval::bisect(float ratio) const
+  {
+    assert_release(Interval(0,1).interior_contains(ratio));
+    auto p = ibex::Interval::bisect(ratio);
+    return { p.first, p.second };
+  }
+
+  inline std::vector<Interval> Interval::complementary(bool compactness) const
+  {
+    if(is_empty() || (compactness && is_degenerated()))
+      return { {-oo,oo} };
+
+    std::vector<Interval> l;
+
+    if(lb() > -oo)
+      l.push_back({-oo,lb()});
+
+    if(ub() < oo)
+      l.push_back({ub(),oo});
+
+    return l;
+  }
+
+  inline std::vector<Interval> Interval::diff(const Interval& y, bool compactness) const
+  {
+    if(compactness && is_degenerated())
+    {
+      if(is_empty() || y.contains(lb()))
+        return {};
+      else
+        return { *this };
+    }
+
+    std::vector<Interval> l;
+    for(const auto& li : y.complementary(compactness))
+    {
+      Interval inter = li & *this;
+      if(!inter.is_degenerated())
+        l.push_back(inter);
+    }
+
+    return l;
+  }
+
+  inline Interval& Interval::operator|=(const Interval& x)
+  {
+    ibex::Interval::operator|=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator&=(const Interval& x)
+  {
+    ibex::Interval::operator&=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator+=(double x)
+  {
+    ibex::Interval::operator+=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator+=(const Interval& x)
+  {
+    ibex::Interval::operator+=(x);
+    return *this;
+  }
+
+  inline Interval Interval::operator-() const
+  {
+    return 0.-*this;
+  }
+
+  inline Interval& Interval::operator-=(double x)
+  {
+    ibex::Interval::operator-=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator-=(const Interval& x)
+  {
+    ibex::Interval::operator-=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator*=(double x)
+  {
+    ibex::Interval::operator*=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator*=(const Interval& x)
+  {
+    ibex::Interval::operator*=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator/=(double x)
+  {
+    ibex::Interval::operator/=(x);
+    return *this;
+  }
+
+  inline Interval& Interval::operator/=(const Interval& x)
+  {
+    ibex::Interval::operator/=(x);
+    return *this;
+  }
+
+  /*static inline Interval Interval::empty()
+  {
+    return ibex::Interval::empty_set();
+  }
+  
+  static inline Interval Interval::zero()
+  {
+    return ibex::Interval::zero();
+  }
+  
+  static inline Interval Interval::zeros()
+  {
+    return ibex::Interval::zero();
+  }
+  
+  static inline Interval Interval::one()
+  {
+    return ibex::Interval::one();
+  }
+  
+  static inline Interval Interval::ones()
+  {
+    return ibex::Interval::one();
+  }
+
+  static inline Interval Interval::half_pi()
+  {
+    return ibex::Interval::half_pi();
+  }
+
+  static inline Interval Interval::pi()
+  {
+    return ibex::Interval::pi();
+  }
+
+  static inline Interval Interval::two_pi()
+  {
+    return ibex::Interval::two_pi();
+  }*/
+
+  inline std::ostream& operator<<(std::ostream& os, const Interval& x)
+  {
+    gaol::interval::precision(os.precision());
+    ibex::operator<<(os,x);
+    return os;
+  }
+
+  inline Interval::Interval(const ibex::Interval& x)
+    : ibex::Interval(x)
+  { }
+
+  inline Interval operator""_i(long double x)
+  {
+    return Interval(x);
   }
 }
