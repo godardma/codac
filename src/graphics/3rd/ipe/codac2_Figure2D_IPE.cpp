@@ -78,8 +78,7 @@ Figure2D_IPE::Figure2D_IPE(const Figure2D& fig)
   ipe::StyleSheet * codac_stylesheet = ipe::ImlParser(source).parseStyleSheet();
   
   cascade->insert(0,codac_stylesheet);
-  // cascade->insert(1,stylesheet);
-  // cascade->insert(0,stylesheet);
+  cascade->insert(1,stylesheet);
   
   stylesheet->setName("codac");
 
@@ -97,7 +96,6 @@ Figure2D_IPE::~Figure2D_IPE()
 {
   std::FILE * file = std::fopen((fig_name+".xml").c_str(), "wb");
   ipe::FileStream stream (file);
-  // cout << "Saving figure to " << fig_name+".xml" << endl;
   doc->saveAsXml(stream);
 }
 

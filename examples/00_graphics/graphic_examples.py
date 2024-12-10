@@ -31,7 +31,7 @@ fig2.set_axes(axis(0,[-1,5]), axis(1,[-1,5]))
 fig2.set_window_properties([250,250],[500,500])
 
 # # The previously declared figure "fig2" can now be used as a DefaultView
-DefaultView.set(fig2)
+# DefaultView.set(fig2)
 # DefaultView.draw_box([[2.2,2.5],[2.2,2.5]],[Color.black(),Color.green(0.8)])
 
 # DefaultView.set(fig1)
