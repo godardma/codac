@@ -12,7 +12,7 @@
 
 #include <codac2_Index.h>
 
-#define FOR_MATLAB false
+#define FOR_MATLAB true
 
 namespace codac2
 {

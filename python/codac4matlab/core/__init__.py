@@ -1,4 +1,4 @@
-from codac._core import *
+from codac4matlab._core import *
 import sys
 
 def codac_error(message):
