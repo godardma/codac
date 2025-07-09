@@ -30,12 +30,21 @@ void export_Parallelepiped(py::module& m)
     PARALLELEPIPED_PARALLELEPIPED_CONST_VECTOR_REF_CONST_MATRIX_REF,
     "z"_a, "A"_a)
 
+  .def("project", &Parallelepiped::project,
+    ZONOTOPE_PARALLELEPIPED_PROJECT_CONST_VECTOR_INT_REF_CONST,
+    "indices"_a)
+
   .def("vertices", &Parallelepiped::vertices,
     VECTOR_VECTOR_PARALLELEPIPED_VERTICES_CONST)
 
-  .def_readwrite("z", &Parallelepiped::z)
+  .def("bounding_box", &Parallelepiped::bounding_box,
+    INTERVALVECTOR_PARALLELEPIPED_BOUNDING_BOX_CONST)
 
-  .def_readwrite("A", &Parallelepiped::A)
+  .def_readwrite("z", &Parallelepiped::z,
+    VECTOR_PARALLELEPIPED_Z)
+
+  .def_readwrite("A", &Parallelepiped::A,
+    MATRIX_PARALLELEPIPED_A)
   ;
 }
 

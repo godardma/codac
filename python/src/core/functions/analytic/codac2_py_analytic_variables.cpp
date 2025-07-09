@@ -22,9 +22,14 @@ namespace py = pybind11;
 using namespace pybind11::literals;
 
 
+void export_VarBase(py::module& m)
+{
+  py::class_<VarBase, std::shared_ptr<VarBase>>(m, "VarBase");
+}
+
 void export_ScalarVar(py::module& m)
 {
-  py::class_<ScalarVar, std::shared_ptr<ScalarVar> /* due to enable_shared_from_this */>
+  py::class_<ScalarVar, VarBase, std::shared_ptr<ScalarVar> /* due to enable_shared_from_this */>
     exported(m, "ScalarVar", SCALARVAR_MAIN);
   exported
   
@@ -87,7 +92,7 @@ ScalarExpr get_item(const VectorVar& v, Index_type i)
 
 void export_VectorVar(py::module& m)
 {
-  py::class_<VectorVar,
+  py::class_<VectorVar, VarBase,
     std::shared_ptr<VectorVar> /* due to enable_shared_from_this */>
     exported(m, "VectorVar", VECTORVAR_MAIN);
   exported
@@ -161,7 +166,7 @@ ScalarExpr get_item(const MatrixVar& m, Index_type i, Index_type j)
 
 void export_MatrixVar(py::module& m)
 {
-  py::class_<MatrixVar,
+  py::class_<MatrixVar, VarBase,
     std::shared_ptr<MatrixVar> /* due to enable_shared_from_this */>
     exported(m, "MatrixVar", MATRIXVAR_MAIN);
   exported
@@ -194,6 +199,9 @@ void export_MatrixVar(py::module& m)
     .def("__sub__",  [](const MatrixVar& e1, const MatrixExpr& e2)     { return e1 - e2; }, py::is_operator())
     .def("__sub__",  [](const MatrixVar& e1, const IntervalMatrix& e2) { return e1 - e2; }, py::is_operator())
     .def("__rsub__", [](const MatrixVar& e1, const IntervalMatrix& e2) { return e2 - e1; }, py::is_operator())
+    .def("__mul__",  [](const MatrixVar& e1, const VectorVar& e2)      { return e1 * e2; }, py::is_operator())
+    .def("__mul__",  [](const MatrixVar& e1, const VectorExpr& e2)     { return e1 * e2; }, py::is_operator())
+    .def("__mul__",  [](const MatrixVar& e1, const IntervalVector& e2) { return e1 * e2; }, py::is_operator())
     .def("__mul__",  [](const MatrixVar& e1, const MatrixVar& e2)      { return e1 * e2; }, py::is_operator())
     .def("__mul__",  [](const MatrixVar& e1, const MatrixExpr& e2)     { return e1 * e2; }, py::is_operator())
     .def("__mul__",  [](const MatrixVar& e1, const IntervalMatrix& e2) { return e1 * e2; }, py::is_operator())

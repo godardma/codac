@@ -47,8 +47,6 @@ The solution set is approximated from an initial box :math:`[\mathbf{x}_0]=[0,2]
   .. code-tab:: c++
 
    #include <codac>
-
-   using namespace std;
    using namespace codac2;
 
    int main()
@@ -191,8 +189,8 @@ User manual
    * :ref:`sec-intervals-class`
    * Boolean intervals
 
-* Linear algebra
-   * Vector, Matrix
+* :ref:`sec-linear`
+   * :ref:`sec-linear-vecmat`
    * IntervalVector, IntervalMatrix
    * Matrix operations and basic linear solving
    * :ref:`sec-linear-inversion`
@@ -242,7 +240,7 @@ User manual
       * CtcInverseNotIn
    * Geometric contractors
       * :ref:`sec-ctc-geom-ctcdist`
-      * CtcPolar
+      * :ref:`sec-ctc-geom-ctcpolar`
       * CtcSegment
       * CtcPolygon
       * CtcPointCloud
@@ -433,6 +431,14 @@ Development
 ..    howto/robotics/index.rst
 ..    howto/geometry/index.rst
 ..    howto/dynamical/index.rst
+
+
+.. toctree::
+   :hidden:
+   :caption: Tutorial
+   :maxdepth: 3
+
+   tuto/cp_robotics/index.rst
 
 
 .. toctree::

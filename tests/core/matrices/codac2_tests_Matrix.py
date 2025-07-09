@@ -12,7 +12,7 @@ from codac import *
 
 class TestMatrix(unittest.TestCase):
 
-  def tests_def_Matrix(self):
+  def test_def_Matrix(self):
 
     x = Matrix([
       [ 1, 2 ],
@@ -32,7 +32,7 @@ class TestMatrix(unittest.TestCase):
     m = Matrix(x)
 
 
-  def tests_fnc_Matrix(self):
+  def test_fnc_Matrix(self):
 
     x = Matrix([
       [ -1, 3  ],
@@ -63,6 +63,19 @@ class TestMatrix(unittest.TestCase):
       [ -1, 4  ],
       [ -6, -9 ]
     ]))
+
+  def test_def_Matrix_zero_init(self):
+
+    x = Matrix(2,2)
+    print(x)
+    self.assertTrue(x(0,0) == 0)
+    self.assertTrue(x(1,0) == 0)
+    self.assertTrue(x(0,1) == 0)
+    self.assertTrue(x(1,1) == 0)
+
+    v = Vector(2)
+    self.assertTrue(v[0] == 0)
+    self.assertTrue(v[1] == 0)
 
 if __name__ ==  '__main__':
   unittest.main()
