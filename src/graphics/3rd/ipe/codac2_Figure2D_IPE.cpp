@@ -12,6 +12,8 @@
 #include "codac2_Figure2D_IPE.h"
 #include "codac2_math.h"
 
+#include <zlib.h>
+
 using namespace std;
 using namespace codac2;
 
