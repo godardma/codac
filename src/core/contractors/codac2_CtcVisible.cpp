@@ -27,7 +27,18 @@ namespace {
     void core_det(IntervalVector& x, const IntervalVector& p, const IntervalVector& v, const double sign) {
         IntervalVector v_xp = x - p;
         IntervalVector v_fixed = v;
-        DetOp::bwd(sign * Interval(0, oo), v_xp, v_fixed);
+        if (sign==0)
+        {
+          IntervalVector v_xp1 (v_xp);
+          IntervalVector v_xp2 (v_xp);
+          IntervalVector v_fixed1 (v_fixed);
+          IntervalVector v_fixed2 (v_fixed);
+          DetOp::bwd(Interval(0, oo), v_xp1, v_fixed1);
+          DetOp::bwd(Interval(-oo, 0), v_xp2, v_fixed2);
+          v_xp &= v_xp1 | v_xp2;
+        }
+        else
+          DetOp::bwd(sign * Interval(0, oo), v_xp, v_fixed);
         x &= v_xp + p;
     }
 
@@ -61,6 +72,9 @@ CtcVisibleBase::CtcVisibleBase(const IntervalVector& a, const std::vector<Segmen
 {
   for(const auto& s : edges)
   {
+    if (((BoolInterval::TRUE) & (s.contains(a))) == BoolInterval::TRUE)
+      _obstructed = true;
+
     VisibilityEdgeData ed;
     ed.e1 = IntervalVector(s[0]);
     ed.e2 = IntervalVector(s[1]);
@@ -77,7 +91,7 @@ CtcVisibleBase::CtcVisibleBase(const IntervalVector& a, const std::vector<Segmen
     } else if (det_val.ub() < 0) {
       ed.k = -1.0;
     } else {
-      ed.k = 0.0; // Edge is collinear with point 'a'
+      ed.k = 0; // Edge is collinear with point 'a'
     }
 
     _edges.push_back(ed);
@@ -97,7 +111,9 @@ CtcVisible::CtcVisible(const IntervalVector& a, const Polygon& p) : Ctc(2), CtcV
 }
 
 void CtcVisible::contract(IntervalVector& x) const {
-  for (const auto& ed : _edges) {
+  if (!_obstructed) 
+  {
+    for (const auto& ed : _edges) {
     IntervalVector x1(x), x2(x), x3(x), x4(x);
     
     core_det(x1, ed.e1, ed.v_e2e1, ed.k);
@@ -107,6 +123,7 @@ void CtcVisible::contract(IntervalVector& x) const {
 
     x &= (x1 | x2 | x3 | x4);
     if (x.is_empty()) return;
+  }
   }
 }
 
@@ -125,17 +142,20 @@ CtcNoVisible::CtcNoVisible(const IntervalVector& a, const Polygon& p) : Ctc(2), 
 }
 
 void CtcNoVisible::contract(IntervalVector& x) const {
-    IntervalVector x_total_hidden = IntervalVector::empty(2);
+    if (!_obstructed) 
+    {
+      IntervalVector x_total_hidden = IntervalVector::empty(2);
 
-    for (const auto& ed : _edges) {
-        IntervalVector xi(x);
-        
-        core_det(xi, ed.e1, ed.v_e2e1, -ed.k);
-        core_det(xi, ed.e1, ed.v_ae1, -ed.k);
-        core_det(xi, ed.e2, ed.v_ae2, ed.k);
-        core_aabb(xi, _a, ed.e1, ed.e2, true); // NoVisible = Overlap check
+      for (const auto& ed : _edges) {
+          IntervalVector xi(x);
+          
+          core_det(xi, ed.e1, ed.v_e2e1, -ed.k);
+          core_det(xi, ed.e1, ed.v_ae1, -ed.k);
+          core_det(xi, ed.e2, ed.v_ae2, ed.k);
+          core_aabb(xi, _a, ed.e1, ed.e2, true); // NoVisible = Overlap check
 
-        x_total_hidden |= xi;
+          x_total_hidden |= xi;
+      }
+      x &= x_total_hidden;
     }
-    x &= x_total_hidden;
 }

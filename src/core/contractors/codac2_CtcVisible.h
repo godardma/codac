@@ -30,6 +30,7 @@ namespace codac2
 
       const IntervalVector _a;
       std::vector<VisibilityEdgeData> _edges;
+      bool _obstructed = false;
   };
 
   class CtcVisible : public Ctc<CtcVisible, IntervalVector>, CtcVisibleBase
