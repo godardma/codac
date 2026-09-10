@@ -18,7 +18,7 @@ int main()
   // and the y-axis is the time
   VectorVar y (2);
   auto t = 4.0*y[0];
-  auto L = 0.5*y[1];
+  auto L = 0.4*y[1];
 
   // The image of [-1,1]^2 by both functions is the area swept 
   AnalyticFunction f1 ({y},{t+L*(-cos(t)),sin(t)+L});
